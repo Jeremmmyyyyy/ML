@@ -3,6 +3,7 @@
 
 Gradient Descent
 """
+from costs import calculate_mse
 
 
 def compute_gradient(y, tx, w):
@@ -20,7 +21,9 @@ def compute_gradient(y, tx, w):
     # INSERT YOUR CODE HERE
     # TODO: compute gradient vector
     # ***************************************************
-    raise NotImplementedError
+    err = y - tx.dot(w)
+    grad = -tx.T.dot(err) / len(err)
+    return grad, err
 
 
 def gradient_descent(y, tx, initial_w, max_iters, gamma):
@@ -42,16 +45,16 @@ def gradient_descent(y, tx, initial_w, max_iters, gamma):
     losses = []
     w = initial_w
     for n_iter in range(max_iters):
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: compute gradient and loss
-        # ***************************************************
-        raise NotImplementedError
-        # ***************************************************
-        # INSERT YOUR CODE HERE
-        # TODO: update w by gradient
-        # ***************************************************
-        raise NotImplementedError
+        ws = [initial_w]
+        losses = []
+        w = initial_w
+        for n_iter in range(max_iters):
+            ### SOLUTION
+            # compute loss, gradient
+            grad, err = compute_gradient(y, tx, w)
+            loss = calculate_mse(err)
+            # update w by gradient descent
+            w = w - gamma * grad
 
         # store w and loss
         ws.append(w)
