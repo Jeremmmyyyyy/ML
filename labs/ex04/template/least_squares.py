@@ -5,6 +5,7 @@ Least Square
 """
 
 import numpy as np
+from ridge_regression import ridge_regression
 
 
 def least_squares(y, tx):
@@ -27,4 +28,4 @@ def least_squares(y, tx):
     # least squares: TODO
     # returns optimal weights, MSE
     # ***************************************************
-    raise NotImplementedError
+    return ridge_regression(y, tx, 0)
